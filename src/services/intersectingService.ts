@@ -1,4 +1,4 @@
-import { joinObjects } from 'hd-utils';
+import { getWindowObj, joinObjects } from 'hd-utils';
 import { intersectingServiceOptions } from '../types';
 
 export default function intersectingService(
@@ -10,9 +10,10 @@ export default function intersectingService(
     ...options
   }: intersectingServiceOptions
 ) {
+  const body = getWindowObj().document.body
   const allOptions = joinObjects(
     {
-      root: document,
+      root: body,
       rootMargin: '5px',
       threshold: 0.5,
     },
