@@ -10,7 +10,7 @@ const LazyLoad = function({
   $cacheKey,
   $importerFunction,
   ...props
-}: LazyLoadProps) {
+}: LazyLoadProps): React.JSX.Element | null {
   const [Component, setComponent] = useState<React.ComponentType | null>(null);
   const isFirstChangeRef = useRef(false);
 
@@ -42,7 +42,7 @@ const LazyLoad = function({
     !Component ||
     (!$load && $disableCache)
   )
-    return;
+    return null;
 
   return (
     <Suspense fallback={$fallback || <div />}>
