@@ -3,12 +3,12 @@ import LazyLoad from './LazyLoad';
 import intersectingService from '../services/intersectingService';
 import { LazyLoadInViewProps } from '../types';
 
-const LazyLoadInView = ({
+export default function LazyLoadInView<T>({
   $options,
   $load = true,
   $divContainerProps,
   ...props
-}: LazyLoadInViewProps) => {
+}: LazyLoadInViewProps<T>) {
   const [isInView, setIsInView] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
 
@@ -35,6 +35,4 @@ const LazyLoadInView = ({
       <LazyLoad $load={$load && isInView} {...props} />
     </div>
   );
-};
-
-export default LazyLoadInView;
+}

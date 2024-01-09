@@ -1,12 +1,12 @@
 import { ComponentType } from 'react';
 
-export type LazyLoadProps = {
+export type LazyLoadProps<T> = {
   $load: boolean;
   $fallback?: React.ReactNode;
   $disableCache?: boolean;
   $cacheKey?: string;
-  $importerFunction: () => Promise<{ default: ComponentType }>;
-};
+  $importerFunction: () => Promise<{ default: ComponentType<any> }>;
+} & T;
 
 export type intersectingServiceOptions = IntersectionObserverInit & {
   unObserveOnIntersect?: boolean;
@@ -20,7 +20,7 @@ export type intersectingServiceOptions = IntersectionObserverInit & {
   ) => void;
 };
 
-export type LazyLoadInViewProps = {
+export type LazyLoadInViewProps<T> = {
   $options: IntersectionObserverInit;
   $divContainerProps: React.HTMLAttributes<HTMLDivElement>;
-} & LazyLoadProps;
+} & LazyLoadProps<T>;

@@ -3,14 +3,14 @@ import React from 'react';
 import { isNullOrUndefined } from 'hd-utils';
 import { LazyLoadProps } from '../types';
 
-const LazyLoad = function({
+const LazyLoad = function<T>({
   $load,
   $disableCache,
   $fallback,
   $cacheKey,
   $importerFunction,
   ...props
-}: LazyLoadProps): React.JSX.Element | null {
+}: LazyLoadProps<T>): React.JSX.Element | null {
   const [Component, setComponent] = useState<React.ComponentType | null>(null);
   const isFirstChangeRef = useRef(false);
 
