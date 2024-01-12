@@ -20,6 +20,7 @@ export default function LazyLoadInView<T>({
         setIsInView(true);
       },
       unObserveOnIntersect: true,
+      ...$options,
     });
 
     return () => {
