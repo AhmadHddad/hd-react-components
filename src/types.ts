@@ -4,7 +4,6 @@ export type LazyLoadProps<T> = {
   $load: boolean;
   $fallback?: React.ReactNode;
   $disableCache?: boolean;
-  $cacheKey?: string;
   $importerFunction: () => Promise<{ default: ComponentType<any> }>;
 } & T;
 

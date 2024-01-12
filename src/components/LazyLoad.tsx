@@ -7,7 +7,6 @@ const LazyLoad = function<T>({
   $load,
   $disableCache,
   $fallback,
-  $cacheKey,
   $importerFunction,
   ...props
 }: LazyLoadProps<T>): React.JSX.Element | null {
