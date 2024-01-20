@@ -1,40 +1,5 @@
 import React from 'react';
-
-interface BreakpointValues {
-  xs?: string;
-  sm?: string;
-  md?: string;
-  lg?: string;
-  [key: string]: string | undefined;
-}
-
-type GridLayoutOptions<K extends keyof JSX.IntrinsicElements = 'div'> = {
-  container?: boolean;
-  item?: boolean;
-  xs?: number;
-  sm?: number;
-  md?: number;
-  lg?: number;
-  sx?: React.CSSProperties;
-  spacing?: number;
-  gap?: number;
-  display?: React.CSSProperties['display'];
-  flexDirection?: React.CSSProperties['flexDirection'];
-  flexWrap?: React.CSSProperties['flexWrap'];
-  justifyContent?: React.CSSProperties['justifyContent'];
-  alignItems?: React.CSSProperties['alignItems'];
-  alignContent?: React.CSSProperties['alignContent'];
-  width?: React.CSSProperties['width'];
-  height?: React.CSSProperties['height'];
-  maxWidth?: React.CSSProperties['maxWidth'];
-  maxHeight?: React.CSSProperties['maxHeight'];
-  minWidth?: React.CSSProperties['minWidth'];
-  minHeight?: React.CSSProperties['minHeight'];
-  margin?: React.CSSProperties['margin'];
-  padding?: React.CSSProperties['padding'];
-  breakpoints?: BreakpointValues;
-  component?: K;
-} & React.ComponentProps<K>;
+import { GridLayoutOptions } from '../types';
 
 let uniqueId = 0;
 

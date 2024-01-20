@@ -6,7 +6,8 @@ import { LazyLoadInViewProps } from '../types';
 export default function LazyLoadInView<T>({
   $options,
   $load = true,
-  $divContainerProps,
+  $container = 'div',
+  $containerProps,
   ...props
 }: LazyLoadInViewProps<T>) {
   const [isInView, setIsInView] = useState(false);
@@ -31,9 +32,9 @@ export default function LazyLoadInView<T>({
     };
   }, []);
 
-  return (
-    <div ref={ref} {...($divContainerProps || {})}>
-      <LazyLoad $load={$load && isInView} {...props} />
-    </div>
-  );
+  return React.createElement($container, {
+    ...$containerProps,
+    ref,
+    children: <LazyLoad $load={$load && isInView} {...props} />,
+  });
 }
