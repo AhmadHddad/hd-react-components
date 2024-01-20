@@ -8,47 +8,33 @@ interface BreakpointValues {
   [key: string]: string | undefined;
 }
 
-interface GridLayoutOptions {
+type GridLayoutOptions<K extends keyof JSX.IntrinsicElements = 'div'> = {
   container?: boolean;
   item?: boolean;
   xs?: number;
   sm?: number;
   md?: number;
   lg?: number;
-  sx?: Record<string, string>;
+  sx?: React.CSSProperties;
   spacing?: number;
   gap?: number;
-  display?: 'flex' | 'block' | 'inline-block' | 'grid' | 'inline-grid' | 'none';
-  flexDirection?: 'row' | 'column' | 'row-reverse' | 'column-reverse';
-  justifyContent?:
-    | 'flex-start'
-    | 'flex-end'
-    | 'center'
-    | 'space-between'
-    | 'space-around'
-    | 'space-evenly';
-  alignItems?: 'flex-start' | 'flex-end' | 'center' | 'stretch' | 'baseline';
-  alignContent?:
-    | 'flex-start'
-    | 'flex-end'
-    | 'center'
-    | 'stretch'
-    | 'space-between'
-    | 'space-around';
-  flexWrap: 'nowrap' | 'wrap' | 'wrap-reverse';
-  width?: string;
-  height?: string;
-  maxWidth?: string;
-  maxHeight?: string;
-  minWidth?: string;
-  minHeight?: string;
-  margin?: string;
-  padding?: string;
-  children?: React.ReactNode;
-  component?: keyof JSX.IntrinsicElements;
+  display?: React.CSSProperties['display'];
+  flexDirection?: React.CSSProperties['flexDirection'];
+  flexWrap?: React.CSSProperties['flexWrap'];
+  justifyContent?: React.CSSProperties['justifyContent'];
+  alignItems?: React.CSSProperties['alignItems'];
+  alignContent?: React.CSSProperties['alignContent'];
+  width?: React.CSSProperties['width'];
+  height?: React.CSSProperties['height'];
+  maxWidth?: React.CSSProperties['maxWidth'];
+  maxHeight?: React.CSSProperties['maxHeight'];
+  minWidth?: React.CSSProperties['minWidth'];
+  minHeight?: React.CSSProperties['minHeight'];
+  margin?: React.CSSProperties['margin'];
+  padding?: React.CSSProperties['padding'];
   breakpoints?: BreakpointValues;
-  [propName: string]: any;
-}
+  component?: K;
+} & React.ComponentProps<K>;
 
 let uniqueId = 0;
 
@@ -65,7 +51,9 @@ function generateClassName(): string {
 
 const dynamicStyleSheet = createDynamicStyleSheet();
 
-const GridLayout: React.FC<GridLayoutOptions> = props => {
+function GridLayout<K extends keyof JSX.IntrinsicElements = 'div'>(
+  props: GridLayoutOptions<K>
+) {
   const {
     container,
     item,
@@ -221,6 +209,6 @@ const GridLayout: React.FC<GridLayoutOptions> = props => {
   ]);
 
   return React.createElement(component, { className, ...otherProps }, children);
-};
+}
 
 export default GridLayout;
